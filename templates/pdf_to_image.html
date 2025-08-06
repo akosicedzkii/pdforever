@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Image - pdforever</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>pdforever</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Image to PDF</a>
+                <a href="{{ url_for('pdf_to_image') }}" class="active">PDF to Image</a>
+                <a href="{{ url_for('pdf_to_word') }}">PDF to Word</a>
+                <a href="{{ url_for('word_to_pdf') }}">Word to PDF</a>
+            </nav>
+            <p>Convert each page of your PDF into a JPG image.</p>
+        </header>
+
+        <main>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="flash-messages">
+                  {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <form id="upload-form" action="{{ url_for('pdf_to_image') }}" method="post" enctype="multipart/form-data">
+                <div id="drop-zone">
+                    <p>Drag & drop a PDF file here, or</p>
+                    <label for="file-input" class="file-input-label">Select PDF</label>
+                    <input type="file" id="file-input" name="file" accept="application/pdf">
+                </div>
+
+                <div id="preview-container" style="min-height: 50px;">
+                    <p id="preview-placeholder">Your selected file will appear here.</p>
+                    <ul id="preview-list" style="grid-template-columns: 1fr;"></ul>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="convert-btn" class="btn-primary" disabled>
+                        Convert to JPG
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 pdforever. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/single-file-script.js') }}"></script>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF - pdforever</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>pdforever</h1>
+             <nav>
+                <a href="{{ url_for('index') }}" class="active">Image to PDF</a>
+                <a href="{{ url_for('pdf_to_image') }}">PDF to Image</a>
+                <a href="{{ url_for('pdf_to_word') }}">PDF to Word</a>
+                <a href="{{ url_for('word_to_pdf') }}">Word to PDF</a>
+            </nav>
+            <p>Convert JPG, PNG, and more to PDF in seconds.</p>
+        </header>
+
+        <main>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="flash-messages">
+                  {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <form id="upload-form" action="{{ url_for('convert') }}" method="post" enctype="multipart/form-data">
+                <div id="drop-zone">
+                    <p>Drag & drop images here, or</p>
+                    <label for="file-input" class="file-input-label">Select Images</label>
+                    <input type="file" id="file-input" name="images" multiple accept="image/*">
+                </div>
+
+                <div id="preview-container">
+                    <p id="preview-placeholder">Your selected images will appear here. Drag to reorder.</p>
+                    <ul id="preview-list">
+                        <!-- Image previews will be injected here by JavaScript -->
+                    </ul>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="convert-btn" class="btn-primary" disabled>
+                        Convert to PDF
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 pdforever. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+

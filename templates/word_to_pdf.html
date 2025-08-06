@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to PDF - pdforever</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>pdforever</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Image to PDF</a>
+                <a href="{{ url_for('pdf_to_image') }}">PDF to Image</a>
+                <a href="{{ url_for('pdf_to_word') }}">PDF to Word</a>
+                <a href="{{ url_for('word_to_pdf') }}" class="active">Word to PDF</a>
+            </nav>
+            <p>Convert your Word documents to PDF files easily.</p>
+        </header>
+
+        <main>
+            <div class="placeholder-content">
+                <h2>Feature Coming Soon!</h2>
+                <p>We are developing a tool to convert Word documents to PDF accurately.</p>
+                <p>Stay tuned for updates!</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 pdforever. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
