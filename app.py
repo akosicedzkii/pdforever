@@ -16,7 +16,7 @@ ALLOWED_EXTENSIONS_PDF = {'pdf'}
 ALLOWED_EXTENSIONS_DOC = {'doc', 'docx'}
 
 MAX_CONTENT_LENGTH = 32 * 1024 * 1024  # 32 MB max upload size
-POPPLER_PATH = "poppler-24.08.0\\Library\\bin" # e.g., "poppler-25.08.0\Library\bin"
+POPPLER_PATH = "" # e.g., "poppler-25.08.0\Library\bin"
 
 # --- App Initialization ---
 app = Flask(__name__)
@@ -132,7 +132,7 @@ def pdf_to_image():
 
             try:
                 # Convert PDF to a list of PIL images
-                images = convert_from_path(pdf_path, poppler_path=app.config.get('POPPLER_PATH'))
+                images = convert_from_path(pdf_path)
 
                 if not images:
                     flash('Could not extract any images from the PDF.')
